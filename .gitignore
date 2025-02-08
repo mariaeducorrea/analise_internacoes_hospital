@@ -176,5 +176,5 @@ cython_debug/
 #folhas
 conexao.py
 .gitignore/
-poetry.lock/
-pyproject.toml/
+poetrylock/
+pyprojecttoml/
