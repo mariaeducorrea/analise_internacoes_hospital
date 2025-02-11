@@ -2,9 +2,14 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Definir o caminho base da pasta
+# Definindo o caminho do projeto
 base_dir = r"C:\Users\Administrador\Desktop\relatorio_internacoes_2023"
-dados_dir = os.path.join(base_dir, "dados")  # Pasta onde estão os CSVs
+# Criando novo caminho para pasta dados para acessar os dados deste diretorio de maneira facil
+dados_dir = os.path.join(base_dir, "dados")  
+#criando caminho para salvar graficos
+graficos_dir = os.path.join(base_dir,"fig") #caminho absoluto
+os.makedirs(graficos_dir, exist_ok=True)  # Cria a pasta se não existir
+
 
 # Arquivos CSV
 arquivos = {
@@ -29,13 +34,17 @@ df_internacoes_dia = carregar_csv(arquivos["internacoes_por_dia"])
 df_internacoes_mes = carregar_csv(arquivos["internacoes_por_mes"])
 
 # Gráfico de linha para internações por mês
-plt.figure(figsize=(10, 5))
+fig = plt.figure(figsize=(10, 5))
 plt.plot(df_internacoes_mes["mes"], df_internacoes_mes["total_internacoes"], marker='o', linestyle='-', color='blue')
 plt.xlabel("Mês")
 plt.ylabel("Número de Internações")
 plt.title("Internações por Mês")
 plt.xticks(rotation=45)
 plt.grid(True)
+
+caminho_fig = os.path.join(graficos_dir, "internacoes_por_mes.png")
+fig.savefig(caminho_fig, dpi=300 )
+
 plt.show()
 
 # Gráfico de linha para altas por mês
@@ -46,6 +55,9 @@ plt.ylabel("Número de Altas")
 plt.title("Altas por Mês")
 plt.xticks(rotation=45)
 plt.grid(True)
+
+caminho_fig = os.path.join(graficos_dir, "altas_por_mes.png")
+fig.savefig(caminho_fig, dpi=300 )
 plt.show()
 
 # Gráfico de linha com internações e altas juntas
@@ -58,6 +70,9 @@ plt.title("Internações e Altas por Mês")
 plt.xticks(rotation=45)
 plt.legend()
 plt.grid(True)
+
+caminho_fig = os.path.join(graficos_dir, "internacoes_e_altas.png")
+fig.savefig(caminho_fig, dpi=300 )
 plt.show()
 
 # Gráfico de colunas para internações por mês
@@ -68,6 +83,9 @@ plt.ylabel("Número de Internações")
 plt.title("Internações por Mês (Barras)")
 plt.xticks(rotation=45)
 plt.grid(axis='y')
+
+caminho_fig = os.path.join(graficos_dir, "internacoes_por_mes_colunas.png")
+fig.savefig(caminho_fig, dpi=300 )
 plt.show()
 
 # Gráfico de colunas para altas por mês
@@ -78,6 +96,9 @@ plt.ylabel("Número de Altas")
 plt.title("Altas por Mês (Barras)")
 plt.xticks(rotation=45)
 plt.grid(axis='y')
+
+caminho_fig = os.path.join(graficos_dir, "altas_por_mes_colunas.png")
+fig.savefig(caminho_fig, dpi=300 )
 plt.show()
 
 # Gráfico de área para internações por dia
@@ -89,6 +110,9 @@ plt.ylabel("Número de Internações")
 plt.title("Internações por Dia")
 plt.xticks(rotation=45)
 plt.grid(True)
+
+caminho_fig = os.path.join(graficos_dir, "internacoes_por_dia.png")
+fig.savefig(caminho_fig, dpi=300 )
 plt.show()
 
 # Gráfico de área para altas por dia
@@ -100,4 +124,8 @@ plt.ylabel("Número de Altas")
 plt.title("Altas por Dia")
 plt.xticks(rotation=45)
 plt.grid(True)
+
+
+caminho_fig = os.path.join(graficos_dir, "internacoes_por_dia.png")
+fig.savefig(caminho_fig, dpi=300 )
 plt.show()
